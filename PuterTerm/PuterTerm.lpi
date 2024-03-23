@@ -54,9 +54,11 @@
 -Jirtl.js
 -Jc
 -Jminclude
--dDEBUG"/>
-            <OtherDefines Count="1">
+-dDEBUG
+-dUNIXCMD"/>
+            <OtherDefines Count="2">
               <Define0 Value="DEBUG"/>
+              <Define1 Value="UNIXCMD"/>
             </OtherDefines>
             <CompilerPath Value="$(pas2js)"/>
           </Other>
@@ -92,7 +94,7 @@
             </Debugging>
           </Linking>
           <Other>
-            <CustomOptions Value="-Jeutf-8 -Jirtl.js -Jc -Jm-"/>
+            <CustomOptions Value="-Jeutf-8 -Jirtl.js -Jc -Jm- -dUNIXCMD"/>
             <CompilerPath Value="$(pas2js)"/>
           </Other>
         </CompilerOptions>
@@ -127,6 +129,10 @@
         <CustomData Count="1">
           <Item0 Name="PasJSIsProjectHTMLFile" Value="1"/>
         </CustomData>
+      </Unit>
+      <Unit>
+        <Filename Value="help.txt"/>
+        <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>

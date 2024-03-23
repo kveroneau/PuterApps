@@ -1,0 +1,14 @@
+Welcome to PuterTerm!
+
+This is a very early version of this Terminal, and not really yet for public use,
+but you may have found this by using my Puter Test App.
+
+Here are the current commands implemented:
+
+ls, pwd, cd, cat, clear, mkdir, mv, cp, vim, hacker
+
+All the FS related commands listed work with the Puter File System.
+
+The text editor does not yet support command-line arguments.
+
+All FS commands are also limited to the App's AppDirectory.
