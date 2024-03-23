@@ -8,6 +8,8 @@ They once had a demo of the game which you could download, but I cannot find tha
 
 **DISCLAIMER:**  I do not take any credit for the storyline or scenario, and in the future, the HackRUN demo scenario may be replaced with a scenario of my own creation.  With that said...
 
+You can try it in Puter today, don't hesitate, [Click here NOW!](https://puter.com/app/puterhack-pv0wh0r3l3)
+
 ## How to create your own scenario!
 
 Easy!  Take a look inside the `gamedata` directory and modify the scenario files to your hearts content!  You may also need to adjust the in-game triggers from the ObjectPascal source code, I will make an update to allow creating triggers without modifying the engine itself.
