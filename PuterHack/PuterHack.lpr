@@ -3,9 +3,17 @@ program PuterHack;
 {$mode objfpc}
 
 uses
-  browserapp, JS, Classes, SysUtils, libjquery, Web, jsterm, hackterm;
+  browserapp, JS, Classes, SysUtils, libjquery, Web, jsterm, hackterm, puterjs;
 
 type
+
+  TAppArgs = class(TJSObject)
+  public
+    title: string;
+    message: string;
+    okay: boolean;
+    num: integer;
+  end;
 
   { TPuterHack }
 
@@ -36,10 +44,15 @@ begin
 end;
 
 procedure TPuterHack.OnInit(term: TJQuery);
+var
+  args: TAppArgs;
 begin
   WindowResize(Nil);
   with term do
   begin
+    args:=TAppArgs(PuterAPI.args);
+    if args.okay then
+      echo('#######  This has been launched through Puter Test App!!!');
     echo(' *** Prepare for a fun hacking game simulation! ***');
     echo('This entire game engine has been written 100% in ObjectPascal, ');
     echo('and transpiled to JavaScript, much like how other transpilers');
