@@ -16,12 +16,14 @@ type
     FHackTerm: THackTerminal;
     procedure OnCommand(command: string; term: TJQuery);
     procedure OnInit(term: TJQuery);
+    function WindowResize(aEvent: TJSUIEvent): Boolean;
   end;
 
 { TPuterHack }
 
 procedure TPuterHack.doRun;
 begin
+  window.onresize:=@WindowResize;
   FHackTerm:=Nil;
   FTerm:=InitTerminal('terminal', @OnCommand, SimpleTerm, @OnInit);
 end;
@@ -35,11 +37,24 @@ end;
 
 procedure TPuterHack.OnInit(term: TJQuery);
 begin
-  term.echo(' *** Prepare for a fun hacking game simulation! ***');
-  term.echo('This entire game engine has been written 100% in ObjectPascal, ');
-  term.echo('and transpiled to JavaScript, much like how other transpilers');
-  term.echo('work like the GWT, or perhaps TypeScript.');
-  term.Prompt:='Press enter to begin...';
+  WindowResize(Nil);
+  with term do
+  begin
+    echo(' *** Prepare for a fun hacking game simulation! ***');
+    echo('This entire game engine has been written 100% in ObjectPascal, ');
+    echo('and transpiled to JavaScript, much like how other transpilers');
+    echo('work like the GWT, or perhaps TypeScript.');
+    Prompt:='Press enter to begin...';
+  end;
+end;
+
+function TPuterHack.WindowResize(aEvent: TJSUIEvent): Boolean;
+begin
+  with GetHTMLElement('terminal').style do
+  begin
+    Properties['width']:=IntToStr(window.innerWidth-20)+'px';
+    Properties['height']:=IntToStr(window.innerHeight-20)+'px';
+  end;
 end;
 
 var
