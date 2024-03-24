@@ -1,0 +1,10 @@
+{"metaData": {
+  "fields": [
+    {"name":"Id", "type":"int"},
+    {"name":"Message", "type":"string"}
+  ],
+  "root": "Data"
+  },"Data":[
+    {"Id":1, "Message":"Hello World from Dataset!"}
+  ]
+}

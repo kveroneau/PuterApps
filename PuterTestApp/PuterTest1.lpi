@@ -130,6 +130,15 @@
           <Item0 Name="PasJSIsProjectHTMLFile" Value="1"/>
         </CustomData>
       </Unit>
+      <Unit>
+        <Filename Value="puterds.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PuterDS"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sample.json"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

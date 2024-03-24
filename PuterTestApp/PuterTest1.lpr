@@ -3,7 +3,7 @@ program PuterTest1;
 {$mode objfpc}
 
 uses
-  browserconsole, browserapp, JS, Classes, SysUtils, Web, puterjs;
+  browserconsole, browserapp, JS, Classes, SysUtils, Web, puterjs, PuterDS;
 
 type
 
@@ -20,6 +20,7 @@ type
   TMyApplication = class(TBrowserApplication)
   private
     FFileInput: TJSHTMLInputElement;
+    FPuterApp: TJSHTMLDivElement;
     procedure ShowPuterError(AError: TPuterErrorMsg);
     procedure ShowContent(AContent: string);
     procedure ShowFile(AFile: TPuterFSItem);
@@ -42,6 +43,7 @@ type
     function DoPrompt(AEvent: TJSMouseEvent): Boolean;
     function DoArgsTest(AEvent: TJSMouseEvent): Boolean;
     function DoPuterHack(AEvent: TJSMouseEvent): Boolean;
+    function DoPuterDS(AEvent: TJSMouseEvent): Boolean;
     procedure HandleAuth;
   protected
     procedure doRun; override;
@@ -212,6 +214,15 @@ begin
   PuterAPI.ui.launchApp('puterhack-pv0wh0r3l3', args);
 end;
 
+function TMyApplication.DoPuterDS(AEvent: TJSMouseEvent): Boolean;
+var
+  app: TPuterDS;
+begin
+  FPuterApp.innerHTML:='PuterDS Loading...';
+  app:=TPuterDS.Create(Self);
+  app.RunApp(FPuterApp);
+end;
+
 procedure TMyApplication.HandleAuth;
 begin
   writeln('Auth was successful!');
@@ -222,6 +233,7 @@ var
   p: TJSPromise;
   args: TAppArgs;
 begin
+  FPuterApp:=TJSHTMLDivElement(GetHTMLElement('puter-app'));
   Puter.WindowTitle:='Puter Test Application';
   {Puter.WriteFile('test.txt', 'This was created using the new component.');}
   Puter.OnPuterError:=@ShowPuterError;
@@ -255,6 +267,7 @@ begin
   GetHTMLElement('puter-prompt').onclick:=@DoPrompt;
   GetHTMLElement('args-test').onclick:=@DoArgsTest;
   GetHTMLElement('puter-hack').onclick:=@DoPuterHack;
+  GetHTMLElement('puter-ds').onclick:=@DoPuterDS;
   writeln(PuterAPI.ui.env);
   args:=TAppArgs(PuterAPI.args);
   if args.okay then
