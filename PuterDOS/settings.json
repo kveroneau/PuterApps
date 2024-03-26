@@ -1,0 +1,6 @@
+{
+  "title": "Hyrule Adventure",
+  "image": "hyrule",
+  "exe": "hyrule\\hyrule",
+  "mount": "/hyrule"
+}
