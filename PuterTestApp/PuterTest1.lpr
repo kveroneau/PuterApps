@@ -43,7 +43,11 @@ type
     function DoPrompt(AEvent: TJSMouseEvent): Boolean;
     function DoArgsTest(AEvent: TJSMouseEvent): Boolean;
     function DoPuterHack(AEvent: TJSMouseEvent): Boolean;
+    function DoPuterTerm(AEvent: TJSMouseEvent): Boolean;
     function DoPuterDS(AEvent: TJSMouseEvent): Boolean;
+    function DoPuterPac(AEvent: TJSMouseEvent): Boolean;
+    function DoPuterTetris(AEvent: TJSMouseEvent): Boolean;
+    function DoPuterthon(AEvent: TJSMouseEvent): Boolean;
     procedure HandleAuth;
   protected
     procedure doRun; override;
@@ -214,6 +218,16 @@ begin
   PuterAPI.ui.launchApp('puterhack-pv0wh0r3l3', args);
 end;
 
+function TMyApplication.DoPuterTerm(AEvent: TJSMouseEvent): Boolean;
+var
+  args: TAppArgs;
+begin
+  args:=TAppArgs(TJSObject.new);
+  args.message:='Launched from Puter Test App!';
+  args.okay:=True;
+  PuterAPI.ui.launchApp('puterterm-v76eml869l', args);
+end;
+
 function TMyApplication.DoPuterDS(AEvent: TJSMouseEvent): Boolean;
 var
   app: TPuterDS;
@@ -221,6 +235,21 @@ begin
   FPuterApp.innerHTML:='PuterDS Loading...';
   app:=TPuterDS.Create(Self);
   app.RunApp(FPuterApp);
+end;
+
+function TMyApplication.DoPuterPac(AEvent: TJSMouseEvent): Boolean;
+begin
+  Puter.LaunchApp('puterpac');
+end;
+
+function TMyApplication.DoPuterTetris(AEvent: TJSMouseEvent): Boolean;
+begin
+  Puter.LaunchApp('putertetris');
+end;
+
+function TMyApplication.DoPuterthon(AEvent: TJSMouseEvent): Boolean;
+begin
+  Puter.LaunchApp('puterthon');
 end;
 
 procedure TMyApplication.HandleAuth;
@@ -267,7 +296,11 @@ begin
   GetHTMLElement('puter-prompt').onclick:=@DoPrompt;
   GetHTMLElement('args-test').onclick:=@DoArgsTest;
   GetHTMLElement('puter-hack').onclick:=@DoPuterHack;
+  GetHTMLElement('puter-term').onclick:=@DoPuterTerm;
   GetHTMLElement('puter-ds').onclick:=@DoPuterDS;
+  GetHTMLElement('puter-pacman').onclick:=@DoPuterPac;
+  GetHTMLElement('puter-tetris').onclick:=@DoPuterTetris;
+  GetHTMLElement('puter-brython').onclick:=@DoPuterthon;
   writeln(PuterAPI.ui.env);
   args:=TAppArgs(PuterAPI.args);
   if args.okay then
